@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>index</title>
+<link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+<div class="connection">
+	<p>Status:
+	<span id="conn-status">Disconnected</span>
+	</p>
+</div>
+<div class="controls">
+	<label for="inp-text">Text To Hash:</label>
+	<input type="text" id="inp-text" />
+	<button id="btn-go">Calculate</button>	
+</div>
+<div class="results">
+	<div class="result">
+		<label for="res-md5">MD5</label>
+		<input type="text" id="res-md5" readonly="YES" />
+	</div>
+	<div class="result">
+		<label for="res-sha256">SHA256</label>
+		<input type="text" id="res-sha256" readonly="YES" />
+	</div>
+	<div class="result">
+		<label for="res-sha3">SHA3</label>
+		<input type="text" id="res-sha3" readonly="YES" />
+	</div>
+</div>
+<script src="vendor/qwebchannel.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>

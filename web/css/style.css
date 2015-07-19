@@ -1,0 +1,31 @@
+body {
+	padding: 20px;
+	background: #d2d2d2;
+}
+
+
+input {
+	width: 80%;
+	max-width: 400px;
+}
+
+label {
+	min-width:100px;
+	display:inline-block;
+}
+
+.controls {
+	margin: 10px;
+	padding-bottom:10px;
+	border-bottom: 1px solid purple;
+	margin-bottom:20px;
+}
+
+.results {
+	margin: 10px;
+}
+
+.result label {
+	display:inline-block;
+	margin-bottom:10px;
+}
