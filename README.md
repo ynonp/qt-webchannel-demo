@@ -8,23 +8,23 @@ This repository shows a simple example of that connection based on the example i
 
 Setting up the code requires running a Socket Server on the Qt/C++ side and connecting to it from JS. The code to run the socket server is found in main. After server is up, we register a C++ class on the channel, so JS code can call methods on the object:
 
-				QWebSocketServer server(QStringLiteral("QWebChannel Standalone Example Server"), QWebSocketServer::NonSecureMode);
-				if (!server.listen(QHostAddress::LocalHost, 12345)) {
-					qFatal("Failed to open web socket server.");
-					return 1;
-				}
+		QWebSocketServer server(QStringLiteral("QWebChannel Standalone Example Server"), QWebSocketServer::NonSecureMode);
+		if (!server.listen(QHostAddress::LocalHost, 12345)) {
+			qFatal("Failed to open web socket server.");
+			return 1;
+		}
 
-				// wrap WebSocket clients in QWebChannelAbstractTransport objects
-				WebSocketClientWrapper clientWrapper(&server);
+		// wrap WebSocket clients in QWebChannelAbstractTransport objects
+		WebSocketClientWrapper clientWrapper(&server);
 
-				// setup the channel
-				QWebChannel channel;
-				QObject::connect(&clientWrapper, &WebSocketClientWrapper::clientConnected,
-						&channel, &QWebChannel::connectTo);
+		// setup the channel
+		QWebChannel channel;
+		QObject::connect(&clientWrapper, &WebSocketClientWrapper::clientConnected,
+				&channel, &QWebChannel::connectTo);
 
-				// setup the dialog and publish it to the QWebChannel
-				Hasher hasher;
-				channel.registerObject(QStringLiteral("hasher"), &hasher);
+		// setup the dialog and publish it to the QWebChannel
+		Hasher hasher;
+		channel.registerObject(QStringLiteral("hasher"), &hasher);
 
 From JavaScript we need to connect to the web server. Notice the example uses localhost:
 
