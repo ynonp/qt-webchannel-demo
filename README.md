@@ -28,19 +28,19 @@ Setting up the code requires running a Socket Server on the Qt/C++ side and conn
 
 From JavaScript we need to connect to the web server. Notice the example uses localhost:
 
-				var ws = new WebSocket("ws://localhost:12345");
-				ws.onopen = function() {
-					el.status.innerHTML = "Connected";
+		var ws = new WebSocket("ws://localhost:12345");
+		ws.onopen = function() {
+			el.status.innerHTML = "Connected";
 
-					new QWebChannel(ws, function(channel) {
-						// make dialog object accessible globally
-						api = channel.objects.hasher;
+			new QWebChannel(ws, function(channel) {
+				// make dialog object accessible globally
+				api = channel.objects.hasher;
 
-						api.notifyResult.connect(function(method, hex) {
-							el[method].value = hex;
-						});
-					});
-				};
+				api.notifyResult.connect(function(method, hex) {
+					el[method].value = hex;
+				});
+			});
+		};
 
 ## Running Code
 After everythin's set up calling methods is easy. Each object registered on the channel is available to JS using channel.objects.objectName. The example uses an object named hasher so it is accessed from JS with channel.object.hasher  
@@ -49,15 +49,15 @@ On the C++ side, the object is just a normal QObject with signals and slots. Eve
 
 The lines:
 
-				api.notifyResult.connect(function(method, hex) {
-						el[method].value = hex;
-				});
+		api.notifyResult.connect(function(method, hex) {
+				el[method].value = hex;
+		});
 
 Start to listen on notifyResult signal and whenever it is emitted runs the callback. The lines:
 
-				api.md5(txt);
-				api.sha256(txt);
-				api.sha3(txt);
+		api.md5(txt);
+		api.sha256(txt);
+		api.sha3(txt);
 
 Call the slots `md5`, `sha256` and `sha3` of the C++ hasher object.
 
